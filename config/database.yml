@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: todo_development
+  user: postgres
+  password: Scituate42
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  database: todo_test
+  user: postgres
+  password: Scituate42

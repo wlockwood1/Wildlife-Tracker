@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails species: development" uuid="da90f640-fd68-4d53-8d95-f7cffc32329b">
+      <user-name>postgres</user-name>
+      <user-password>dff9dfc9dfc3dfdedfdfdfcbdfdedfcfdf9edf98</user-password>
+      <schema-pattern>todo_development.pg_catalog todo_development.public</schema-pattern>
+      <default-schemas>todo_development.pg_catalog todo_development.public</default-schemas>
+    </data-source>
+    <data-source name="Rails species: test" uuid="682998d6-3538-46ea-8410-d57c57f5e1eb">
+      <first-sync>true</first-sync>
+      <user-name>postgres</user-name>
+      <user-password>dff9dfc9dfc3dfdedfdfdfcbdfdedfcfdf9edf98</user-password>
+    </data-source>
+  </component>
+</project>

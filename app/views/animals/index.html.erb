@@ -1,0 +1,12 @@
+<h1>Animals Sighted in Northern Portland</h1>
+
+<ul>
+  <% @animals.each do |animal| %>
+  <li><a href="/animals/<%= animal.id %>"><%= animal.species %></a></li>
+  <% end %>
+</ul>
+
+<form action="/animals/new">
+  <button type="new_animal">Add New Animal</button>
+</form>
+<br>

@@ -2,8 +2,10 @@
 
 <p>Your <%= @sighting.animal.species %> sighting was successfully updated.</p>
 
-<p><a href="/animals/<%= @sighting.animal.id %>/sightings/new">Add another sighting of <%= @sighting.animal.species %></a></p>
+<p><%= link_to 'Add sighting', new_animal_sighting_path(@sighting.animal.id) %></p>
 
-<p><a href="/animals/<%= @sighting.animal.id %>">Go back to the <%= @sighting.animal.species %> main page</a></p>
+<p><%= link_to (@sighting.animal) do %>
+  View <%= @sighting.animal.species %>
+<% end %></p>
 
-<p><a href="/animals">Return to main page of animals</a></p>
+<p><%= link_to 'Return to main page of animals', animals_path %> </p>

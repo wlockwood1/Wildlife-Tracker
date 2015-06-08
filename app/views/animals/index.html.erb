@@ -1,12 +1,34 @@
 <h1>Animals Sighted in Northern Portland</h1>
 
-<ul>
-  <% @animals.each do |animal| %>
-  <li><a href="/animals/<%= animal.id %>"><%= animal.species %></a></li>
-  <% end %>
-</ul>
+<table>
+  <tr class="headings">
+    <th>Animal Species</th>
+    <th>Number of sightings</th>
+  </tr>
+    <% @animals.each do |animal| %>
+  <tr class="animals">
+    <td>
+      <a href="/animals/<%= animal.id %>"><%= animal.species %></a>
+    </td>
+    <td><%= animal.sightings.size %></td>
+    <% end %>
+  </tr>
+</table>
 
-<form action="/animals/new">
-  <button type="new_animal">Add New Animal</button>
-</form>
+
+<p><%= link_to 'Add New Animal', new_animal_path(@animal) %></p>
+
+<p><%= link_to 'View Regions', regions_path %></p>
+
+<p><%= link_to 'Add New Region', new_region_path(@region) %></p>
 <br>
+
+
+<h3>View All Sightings for Specific Date Range
+<form action="/sightings" method="get">
+  <label for="sightings_start_date">Start date</label>
+  <input id="sightings_start_date" name="start_date" type="date">
+  <label for="sightings_end_date">End date</label>
+  <input id="sightings_end_date" name="end_date" type="date">
+  <button>Run report</button>
+</form>

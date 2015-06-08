@@ -2,6 +2,8 @@
 
 <p>Your species was successfully saved.</p>
 
-<p><a href="/animals/<%= @animal.id %>">View <%= @animal.species %></a></p>
+<%= link_to (@animal) do %>
+  View <%= @animal.species %>
+<% end %>
 
-<p><a href="/animals">Return to main page of animals</a></p>
+<p><%= link_to 'Return to main page of animals', animals_path %></p>

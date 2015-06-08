@@ -1,4 +1,3 @@
-
 <h1>New Sighting for <%= @sighting.animal.species %></h1>
 
 <% if @sighting.errors.any? %>
@@ -10,15 +9,14 @@
 </ul>
 <% end %>
 
-<form action="/animals/<%= @sighting.animal.id %>/sightings" method="post">
-  <label for="sighting_date">Sighting</label>
-  <input id="sighting_date" name="sighting[date]" type="date" value="<%= @sighting.date %>">
-  <label for="sighting_latitude">Latitude Coordinate</label>
-  <input id="sighting_latitude" name="sighting[latitude]" type="real" value="<%= @sighting.latitude %>">
-  <label for="sighting_longitude">Sighting</label>
-  <input id="sighting_longitude" name="sighting[longitude]" type="real" value="<%= @sighting.longitude %>">
-  <input name="sighting[animal_id]" type="hidden" value="<%= @sighting.animal.id %>">
-  <button>Add New Sighting</button>
-</form>
-
-<!-- Latitude and longitude coordinates should be between -180 and 180. Error if not -->
+<%= form_for @sighting, :url => animal_sightings_path do |a| %>
+  <%= a.hidden_field :animal_id %>
+  <%= a.label :date, 'Sighting Date' %>
+  <%= a.date_field :date %><br>
+  <%= a.label :latitude, 'Latitude Coordinate (must be between 45.47 and 45.58)' %>
+  <%= a.number_field :latitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.label :longitude, 'Longitude Coordinate (must be between -122.63 and -122.73)' %>
+  <%= a.number_field :longitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.collection_select(:region_id, @regions, :id, :region_name, :prompt => "Select a Region") %><br>
+  <%= a.submit "Add New Sighting" %>
+<% end %>

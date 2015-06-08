@@ -2,13 +2,8 @@ class AnimalsController < ApplicationController
 
 def index
   @animals = Animal.all
+  @sighting = Sighting.all
   render('animals/index.html.erb')
-end
-
-def show
-  @animal = Animal.find(params[:id])
-  @sightings = @animal.sightings.all
-  render('animals/show.html.erb')
 end
 
 def create
@@ -23,6 +18,12 @@ end
 def new
   @animal = Animal.new
   render('animals/new.html.erb')
+end
+
+def show
+  @animal = Animal.find(params[:id])
+  @sightings = @animal.sightings.all
+  render('animals/show.html.erb')
 end
 
 def edit

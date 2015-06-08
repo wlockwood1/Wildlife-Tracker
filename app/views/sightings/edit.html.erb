@@ -9,13 +9,14 @@
 </ul>
 <% end %>
 
-<form action="/animals/:animal_id/sightings/<%= @sighting.id %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="sighting_date">Sighting</label>
-  <input id="sighting_date" name="sighting[date]" type="date" value="<%= @sighting.date %>">
-  <label for="sighting_latitude">Latitude Coordinate</label>
-  <input id="sighting_latitude" name="sighting[latitude]" type="real" value="<%= @sighting.latitude %>">
-  <label for="sighting_longitude">Sighting</label>
-  <input id="sighting_longitude" name="sighting[longitude]" type="real" value="<%= @sighting.longitude %>">
-  <button>Update Sighting</button>
-</form>
+<%= form_for @sighting, :url => animal_sighting_path do |a| %>
+  <%= a.hidden_field :animal_id %>
+  <%= a.label 'Sighting Date' %>
+  <%= a.date_field :date %><br>
+  <%= a.label 'Latitude Coordinate' %>
+  <%= a.number_field :latitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.label 'Longitude Coordinate' %>
+  <%= a.number_field :longitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.collection_select(:region_id, @regions, :id, :region_name, :prompt => "Select a Region") %><br>
+  <%= a.submit "Update Sighting" %>
+<% end %>

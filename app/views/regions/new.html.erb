@@ -1,0 +1,16 @@
+<h1>New Region</h1>
+
+<% if @region.errors.any? %>
+<h3>Please fix these errors:</h3>
+<ul>
+  <% @region.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_for @region do |r| %>
+  <%= r.label :region_name %>
+  <%= r.text_field :region_name %>
+  <%= r.submit "Add new region" %>
+<% end %>

@@ -9,15 +9,12 @@
 </ul>
 <% end %>
 
-<form action="/animals/<%= @animal.id %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="animal_species">Species</label>
-  <input id="animal_species" name="animal[species]" type="text" value="<%= @animal.species %>">
-  <label for="animal_image">Picture (please insert image url for species)</label>
-  <input id="animal_image" name="animal[image_url]" type="text" value="<%= @animal.image_url %>">
-  <label for="animal_population">Population (in Portland area)</label>
-  <input id="animal_population" name="animal[population]" type="integer" value="<%= @animal.population %>">
-  <br>
-  <br>
-  <button>Update Animal</button>
-</form>
+<%= form_for @animal do |a| %>
+  <%= a.label :species %>
+  <%= a.text_field :species %><br>
+  <%= a.label 'Picture (Please insert url with image of animal)' %>
+  <%= a.text_field :image_url %><br>
+  <%= a.label :population %>
+  <%= a.text_field :population %><br>
+  <%= a.submit "Update animal"%>
+<% end %>

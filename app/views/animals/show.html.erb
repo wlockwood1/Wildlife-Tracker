@@ -1,26 +1,32 @@
 <h1><%= @animal.species %></h1>
 
-<a href="/animals/<%= @animal.id %>/sightings/new">Add sighting </a>
+<a><img src="<%= @animal.image_url %>" alt="<%= @animal.species %>"></a>
+<p class="population">Population in Portland: <%= @animal.population %></p>
 
-<p><img style="height:auto; width:auto; max-width:150px; max-height:150px" src="<%= @animal.image_url %>"><p>
-<p>Name: <%= @animal.species %></p>
-<p>Population in Portland: <%= @animal.population %></p>
+<h3>Sightings:</h3>
 
-<!-- Figure out how to re-size all images -->
-<p><a href="/animals/<%= @animal.id %>/edit">Edit animal attributes</a></p>
-<p><a href="/animals/<%= @animal.id %>"
-  data-confirm="You sure?"
-  data-method="delete"
-  rel="nofollow">Delete <%= @animal.species %> from database</a></p>
-  <p><a href="/animals">Return to main page</a></p>
+  <p><%= link_to 'Add sighting', new_animal_sighting_path(@animal.id) %></p>
 
-<p>Sightings:</p>
-  <ul>
-    <li> Date Sighted ---- Latitude ---- Longitude</li>
-    <% @sightings.each do |sighting| %>
-    <li>
-      <%= sighting.date %> ---- <%= sighting.latitude %> ---- <%= sighting.longitude %> --- <a href="/animals/<%= @animal.id %>/sightings/<%= sighting.id %>/edit">Edit Sighting Name</a> 
-    </li>
-    <br>
-    <% end %>
-  </ul>
+  <table>
+    <tr class=headings>
+      <th>Species Name</th>
+      <th>Date Sighted</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Region</th>
+    </tr>
+      <% @sightings.each do |sighting| %>
+    <tr class=sightings>
+        <td><%= sighting.animal.species %></td>
+        <td><%= sighting.date %></td>
+        <td><%= sighting.latitude %></td>
+        <td><%= sighting.longitude %></td>
+        <td><%= sighting.region.region_name %></td>
+        <td><%= link_to 'Edit Details', [:edit, @animal, sighting] %></td>
+        <td><%= link_to 'Remove Sighting', [@animal, sighting], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  </table>
+<p><%= link_to 'Edit animal attributes', [:edit, @animal] %></p>
+<p><%= link_to 'Delete animal', @animal, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= link_to 'Return to main page of animals', animals_path %></p>

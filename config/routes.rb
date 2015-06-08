@@ -1,19 +1,33 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  match('animals', {:via => :get, :to => 'animals#index'})
-  match('animals', {:via => :post, :to => 'animals#create'})
-  match('animals/new', {:via => :get, :to => 'animals#new'})
-  match('animals/:id', {:via => :get, :to => 'animals#show'})
-  match('animals/:id/edit', {:via => :get, :to => 'animals#edit'})
-  match('animals/:id', {:via => [:patch, :put], :to => 'animals#update'})
-  match('animals/:id/', {:via => :delete, :to => 'animals#destroy'})
   match('/', {:via => :get, :to => 'animals#index'})
 
-  match('animals/:animal_id/sightings', {:via => :post, :to => 'sightings#create'})
-  match('animals/:animal_id/sightings/new', {:via => :get, :to => 'sightings#new'})
-  match('animals/:animal_id/sightings/edit',{:via => :get, :to => 'sightings#edit'})
-  match('animals/:animal_id/sightings/edit',{:via => [:patch, :put], :to => 'sightings#update'})
+  resources :animals do
+    resources :sightings, only: [:new, :create, :edit, :update, :destroy]
+  end
+
+  match('sightings', {:via => :get, :to => 'sightings#show'})
+  
+  resources :regions
+  # match('animals/:animal_id/sightings', {:via => :post, :to => 'sightings#create'})
+  # match('animals/:animal_id/sightings/new', {:via => :get, :to => 'sightings#new'})
+  # match('animals/:animal_id/sightings/:id/edit',{:via => :get, :to => 'sightings#edit'})
+  # match('animals/:animal_id/sightings/:id',{:via => [:patch, :put], :to => 'sightings#update'})
+  # match('animals/:animal_id/sightings/:id', {:via => :delete, :to => 'sightings#destroy'})
+  #
+  # match('regions', {:via => :get, :to => 'regions#index'})
+  # match('regions', {:via => :post, :to => 'regions#create'})
+  # match('regions/new', {:via => :get, :to => 'regions#new'})
+  # match('regions/:id', {:via => :get, :to => 'regions#show'})
+  # match('regions/:id/edit', {:via => :get, :to => 'regions#edit'})
+  # match('regions/:id', {:via => [:patch, :put], :to => 'regions#update'})
+  # match('regions/:id', {:via => :delete, :to => 'regions#destroy'})
+  #
+  #
+  # resources :sightings
+
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

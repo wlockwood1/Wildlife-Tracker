@@ -1,0 +1,23 @@
+<h1>Sightings between dates</h1>
+<table>
+    <tr class=headings>
+      <th>Species Name</th>
+      <th>Date Sighted</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Region</th>
+    </tr>
+      <% @sightings.each do |sighting| %>
+    <tr class=sightings>
+        <td><a href="animals/<%= sighting.animal.id %>"><%= sighting.animal.species %></a></td>
+        <td><%= sighting.date %></td>
+        <td><%= sighting.latitude %></td>
+        <td><%= sighting.longitude %></td>
+        <td><%= sighting.region.region_name %></td>
+        <td><%= link_to 'Edit Details', [:edit, sighting.animal, sighting] %></td>
+        <td><%= button_to 'Remove Sighting', [sighting.animal, sighting], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  </table>
+
+<p><a href="/animals">Return to Animals page</a></p>

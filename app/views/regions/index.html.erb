@@ -1,0 +1,20 @@
+<h1>Portland Regions</h1>
+
+<table>
+    <tr class=headings>
+      <th>Region Name</th>
+    </tr>
+      <% @regions.each do |region| %>
+    <tr class=sightings>
+        <td>
+          <a href="/regions/<%= region.id %>"><%= region.region_name %></a>
+        </td>
+        <td><%= link_to 'Edit region name', [:edit, region] %></td>
+        <td><%= link_to 'Remove Region', region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  </table>
+  <br>
+
+  <p><%= link_to 'Add New Region', new_region_path(@region) %></p>
+  <p><%= link_to 'Back to Main Page', animals_path(@animals) %></p>

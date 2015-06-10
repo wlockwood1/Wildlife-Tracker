@@ -9,7 +9,7 @@ class RegionsController < ApplicationController
   def create
     @region = Region.new(region_params)
     if @region.save
-      render('regions/success.html.erb')
+      redirect_to('/regions')
     else
       render('regions/new.html.erb')
     end
@@ -34,7 +34,7 @@ class RegionsController < ApplicationController
   def update
     @region = Region.find(params[:id])
     if @region.update(params[:region])
-      render('regions/success.html.erb')
+      redirect_to('/regions')
     else
       render('regions/edit.html.erb')
     end
@@ -43,7 +43,7 @@ class RegionsController < ApplicationController
   def destroy
     @region = Region.find(params[:id])
     @region.destroy
-    render('regions/destroy.html.erb')
+    redirect_to('/regions')
   end
 
 private

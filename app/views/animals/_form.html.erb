@@ -1,0 +1,9 @@
+<%= form_for @animal do |a| %>
+  <%= a.label :species %>
+  <%= a.text_field :species %><br>
+  <%= a.label 'Picture (Please insert url with image of animal)' %>
+  <%= a.text_field :image_url %><br>
+  <%= a.label :population %>
+  <%= a.text_field :population %><br>
+  <%= a.submit "Add new species"%>
+<% end %>

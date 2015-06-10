@@ -1,0 +1,11 @@
+<%= form_for @sighting, :url => animal_sightings_path do |a| %>
+  <%= a.hidden_field :animal_id %>
+  <%= a.label :date, 'Sighting Date' %>
+  <%= a.date_field :date %><br>
+  <%= a.label :latitude, 'Latitude Coordinate (must be between 45.47 and 45.58)' %>
+  <%= a.number_field :latitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.label :longitude, 'Longitude Coordinate (must be between -122.63 and -122.73)' %>
+  <%= a.number_field :longitude, :class => 'text_field', :step => 'any' %><br>
+  <%= a.collection_select(:region_id, @regions, :id, :region_name, :prompt => "Select a Region") %><br>
+  <%= a.submit "Add New Sighting" %>
+<% end %>

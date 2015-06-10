@@ -3,7 +3,7 @@ class SightingsController < ApplicationController
   def create
     @sighting = Sighting.new(sighting_params)
     if @sighting.save
-      render('sightings/success.html.erb')
+      redirect_to("/animals/#{@sighting.animal_id}")
     else
       render('sightings/new.html.erb')
     end
@@ -23,7 +23,7 @@ class SightingsController < ApplicationController
   end
 
   def show
-  @sightings = Sighting.all.where(date: params[:start_date]..params[:end_date])
+  @sightings = Sighting.all.where(date: params[:start_date]..params[:end_date]).order("date DESC")
   render('sightings/show.html.erb')
   end
 
@@ -31,7 +31,7 @@ class SightingsController < ApplicationController
     @sighting = Sighting.find(params[:id])
     @regions = Region.all
     if @sighting.update(params[:sighting])
-      render('sightings/success.html.erb')
+      redirect_to("/animals/#{@sighting.animal_id}")
     else
       render('sightings/edit.html.erb')
     end
@@ -40,7 +40,7 @@ class SightingsController < ApplicationController
   def destroy
     @sighting = Sighting.find(params[:id])
     @sighting.destroy
-    render('sightings/destroy.html.erb')
+    redirect_to("/animals/#{@sighting.animal_id}")
   end
 
 private

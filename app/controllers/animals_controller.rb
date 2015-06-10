@@ -3,47 +3,50 @@ class AnimalsController < ApplicationController
 def index
   @animals = Animal.all
   @sighting = Sighting.all
-  render('animals/index.html.erb')
+  render 'index'
 end
 
 def create
   @animal = Animal.new(animal_params)
   if @animal.save
-    render('animals/success.html.erb')
+    flash[:notice] = "Animal added."
+    redirect_to '/'
   else
-    render('animals/new.html.erb')
+    render 'new'
   end
 end
 
 def new
   @animal = Animal.new
-  render('animals/new.html.erb')
+  render 'new'
 end
 
 def show
   @animal = Animal.find(params[:id])
   @sightings = @animal.sightings.all
-  render('animals/show.html.erb')
+  render 'show'
 end
 
 def edit
   @animal = Animal.find(params[:id])
-  render('animals/edit.html.erb')
+  render 'edit'
 end
 
 def update
   @animal = Animal.find(params[:id])
   if @animal.update(animal_params)
-    render('animals/success.html.erb')
+    flash[:notice] = "Animal updated."
+    redirect_to '/'
   else
-    render('animals/edit.html.erb')
+    render 'edit'
   end
 end
 
 def destroy
   @animal = Animal.find(params[:id])
   @animal.destroy
-  render('animals/destroy.html.erb')
+  flash[:notice] = "Animal deleted."
+  redirect_to '/'
 end
 
 private

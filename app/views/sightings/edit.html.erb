@@ -1,22 +1,5 @@
 <h1>Edit Sighting</h1>
 
-<% if @sighting.errors.any? %>
-<h3>Please fix these errors:</h3>
-<ul>
-  <% @sighting.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-</ul>
-<% end %>
+<%= render('layouts/errors', :object => @sighting) %>
 
-<%= form_for @sighting, :url => animal_sighting_path do |a| %>
-  <%= a.hidden_field :animal_id %>
-  <%= a.label 'Sighting Date' %>
-  <%= a.date_field :date %><br>
-  <%= a.label 'Latitude Coordinate' %>
-  <%= a.number_field :latitude, :class => 'text_field', :step => 'any' %><br>
-  <%= a.label 'Longitude Coordinate' %>
-  <%= a.number_field :longitude, :class => 'text_field', :step => 'any' %><br>
-  <%= a.collection_select(:region_id, @regions, :id, :region_name, :prompt => "Select a Region") %><br>
-  <%= a.submit "Update Sighting" %>
-<% end %>
+<%= render 'form' %>

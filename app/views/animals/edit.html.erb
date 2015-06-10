@@ -1,20 +1,5 @@
 <h1>Edit Animal</h1>
 
-<% if @animal.errors.any? %>
-<h3>Please fix these errors:</h3>
-<ul>
-  <% @animal.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-</ul>
-<% end %>
+<%= render('layouts/errors', :object => @animal) %>
 
-<%= form_for @animal do |a| %>
-  <%= a.label :species %>
-  <%= a.text_field :species %><br>
-  <%= a.label 'Picture (Please insert url with image of animal)' %>
-  <%= a.text_field :image_url %><br>
-  <%= a.label :population %>
-  <%= a.text_field :population %><br>
-  <%= a.submit "Update animal"%>
-<% end %>
+<%= render 'form' %>
